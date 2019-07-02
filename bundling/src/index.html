@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+    <head>Speed Insights</head>
+    <script>
+            function run(path) {
+              const url = setUpQuery(path);
+              fetch(url)
+                .then(response => response.json())
+                .then(json => {
+                  // See https://developers.google.com/speed/docs/insights/v5/reference/pagespeedapi/runpagespeed#response
+                  // to learn more about each of the properties in the response object.
+                  showInitialContent(json.id);
+                  const lighthouse = json.lighthouseResult;
+                  const lighthouseMetrics = {
+                    'mParticle Loaded (ms)': lighthouse.audits['user-timings'].details.items[0].startTime,
+                    'Speed Index': lighthouse.audits['speed-index'].displayValue,
+                    'Resources Requested':lighthouse.audits['resource-summary'].displayValue
+                  };
+                  showLighthouseContent(path, lighthouseMetrics);
+                });
+            }
+            
+            function setUpQuery(path) {
+              const api = 'https://www.googleapis.com/pagespeedonline/v5/runPagespeed';
+              const parameters = {
+                url: encodeURIComponent('https://samdozor.github.io/web-sdk-showcase/' + path)
+              };
+              let query = `${api}?`;
+              for (key in parameters) {
+                query += `${key}=${parameters[key]}`;
+              }
+              return query;
+            }
+            
+            function showInitialContent(id) {
+              const page = document.createElement('p');
+              page.textContent = `Page tested: ${id}`;
+              document.body.appendChild(page);
+            }
+            
+            function showCruxContent(cruxMetrics) {
+              const cruxHeader = document.createElement('h2');
+              cruxHeader.textContent = "Chrome User Experience Report Results";
+              document.body.appendChild(cruxHeader);
+              for (key in cruxMetrics) {
+                const p = document.createElement('p');
+                p.textContent = `${key}: ${cruxMetrics[key]}`;
+                document.body.appendChild(p);
+              }
+            }
+            
+            function showLighthouseContent(path, lighthouseMetrics) {
+              const lighthouseHeader = document.createElement('h2');
+              lighthouseHeader.textContent = path;
+              document.body.appendChild(lighthouseHeader);
+              for (key in lighthouseMetrics) {
+                const p = document.createElement('p');
+                p.textContent = `${key}: ${lighthouseMetrics[key]}`;
+                document.body.appendChild(p);
+              }
+            }
+
+            const title = document.createElement('h1');
+            title.textContent = 'PageSpeed Insights API Demo (mParticle SDK)';
+            document.body.appendChild(title);
+            
+            run('selfhost');
+            run('scripttag');
+            run('selfconfig');
+            </script>
+    <body>
+
+    </body>
+</html>

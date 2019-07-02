@@ -1,0 +1,28 @@
+{
+  "name": "@mparticle/webpack-sdk-showcase",
+  "version": "1.0.0",
+  "description": "Showcase and examples for the mParticle Web SDK.",
+  "private": true,
+  "scripts": {
+    "mpconfigure:dev": "node src/utils/mpconfigure update -k REPLACEME -d -o src/selfconfig/mpconfig.dev.json",
+    "mpconfigure:prod": "node src/utils/mpconfigure update -k REPLACEME -o src/selfconfig/mpconfig.prod.json",
+    "mpconfigure": "npm run mpconfigure:dev && npm run mpconfigure:prod",
+    "start": "NODE_ENV=production node node_modules/.bin/webpack-dev-server --open",
+    "cp:scripttag": "cp src/scripttag/index.html dist/scripttag/index.html",
+    "cp:selfhost": "cp src/selfhost/index.html dist/selfhost/index.html",
+    "cp:selfconfig": "cp src/selfconfig/index.html dist/selfconfig/index.html",
+    "cp": "npm run cp:scripttag && npm run cp:selfhost && npm run cp:selfconfig",
+    "build": "NODE_ENV=production node node_modules/.bin/webpack && npm run cp"
+  },
+  "author": "Sam Dozor",
+  "license": "Apache 2.0",
+  "devDependencies": {
+    "webpack": "^4.32.2",
+    "webpack-cli": "^3.3.2",
+    "webpack-dev-server": "^3.7.2"
+  },
+  "dependencies": {
+    "@mparticle/web-google-analytics-kit": "^2.0.0-rc.1",
+    "@mparticle/web-sdk": "^2.9.5-r"
+  }
+}
