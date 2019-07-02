@@ -18,6 +18,7 @@ This example shows some of the various ways you can add the SDK to your web app:
 git clone git@github.com:mParticle/web-sdk-showcase.git
 cd bundling/
 npm install
-npm build
+npm run mpconfigure 
+npm run build
 npm start
 ```
