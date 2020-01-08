@@ -1,0 +1,53 @@
+<!doctype html>
+<html ⚡>
+   <head>
+      <meta charset="utf-8">
+      <script async src="https://cdn.ampproject.org/v0.js"></script>
+      <title>AMP Example</title>
+      <script async custom-element="amp-analytics"
+         src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"></script>
+   </head>
+   <body>
+      Accelerated Mobile Pages example...
+      <button id="logEventButton">Click Here</button>
+      <amp-analytics type="mparticle" id="analytics1">
+         <script type="application/json">
+            {
+              "vars": {
+                "apiKey": "REPLACEME"
+              },
+              "triggers": {
+                "trackPageview": {
+                  "on": "visible",
+                  "request": "pageview",
+                  "vars": {
+                    "pageName":"Example Screen View",
+                    "debug": "true",
+                    "userIdentities_Types" : ["customerid", "other"],
+                    "userIdentities_Values" : ["foo-customer-id", "foo-other-id"]
+                    }
+                  },
+                "trackAppEvent": {
+                  "on": "click",
+                  "selector": "#logEventButton",
+                  "request": "event",
+                  "vars": {
+                    "eventName": "AMP Test button clicked",
+                    "eventType": "Other",
+                    "eventAttributes_Keys": ["test key1","test key2"],
+                    "eventAttributes_Values": ["test value1","test value2"],
+                    "userAttributes_Keys": ["test user attr key1","test user attr key2"],
+                    "userAttributes_Values": ["test user attr value1","test user attr value2"],
+                    "debug": "true",
+                    "location": [26.4619396, -80.0691996],
+                    "customFlags_Keys": ["custom flag1", "custom flag2"],
+                    "customFlags_Values": ["[100, 200]", "[test val1, test val2]"],
+                    "appVersion": "1.0"
+                  }
+                }
+              }
+            }
+         </script>
+      </amp-analytics>
+   </body>
+</html>
