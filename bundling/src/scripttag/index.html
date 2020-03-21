@@ -1,8 +1,11 @@
 <!doctype html>
+<!-- mParticle's core Web SDK is compatible with CSP. This example uses "unsafe-inline" but using a nonce is also supported.-->
+<META HTTP-EQUIV='Content-Security-Policy' CONTENT="default-src 'self' *.mparticle.com; script-src 'self' 'unsafe-inline' jssdkcdn.mparticle.com">
 <html>
 
 <head>
     <title>Script tag example</title>
+    <!-- To use a CSP nonce, update the snippet below and see here for the un-minified snippet: https://github.com/mParticle/mparticle-web-sdk/blob/master/snippet.js-->
     <script type="text/javascript">
         window.mParticle = {
           config: {
