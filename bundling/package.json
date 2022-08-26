@@ -22,7 +22,8 @@
     "webpack-dev-server": "^3.7.2"
   },
   "dependencies": {
+    "@mparticle/web-amplitude-kit": "git+https://github.com/mparticle-integrations/mparticle-javascript-integration-amplitude.git#amplitude-ecommerce-update-staging",
     "@mparticle/web-google-analytics-kit": "^2.0.0-rc.1",
-    "@mparticle/web-sdk": "^2.9.5-r"
+    "@mparticle/web-sdk": "^2.16.0"
   }
 }

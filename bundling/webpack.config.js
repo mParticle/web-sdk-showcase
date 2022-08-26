@@ -2,8 +2,6 @@ const path = require('path');
 
 module.exports = {
     entry: {
-        selfhost: './src/selfhost/app.js',
-        scripttag: './src/scripttag/app.js',
         selfconfig: './src/selfconfig/app.js',
     },
     output: {
